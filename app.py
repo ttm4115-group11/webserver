@@ -37,6 +37,8 @@ racks = [
 
 @app.route('/update/<int:rack_id>', methods=['PUT'])
 def addRack(rack_id):
+    content = request.json
+    
     racks.append({
         "id": rack_id,
         "location": request.json.get('location'),
@@ -45,6 +47,9 @@ def addRack(rack_id):
         "parkingspots": 10,
         "available_spots": 0
     })
+    print(racks)
+    return 'all good'
+
 
 @app.route('/', methods=['GET'])
 def index():
