@@ -16,7 +16,7 @@
         "available_spots": 29
     },
     {
-        "id": 2,
+        "id": 3,
         "location": "Hovedbygget, Gløshuagen",
         "latitude": "64.41947",
         "longditude": "10.40093", 
@@ -24,7 +24,7 @@
         "available_spots": 15
     },
     {
-        "id": 3,
+        "id": 4,
         "location": "Solsiden",
         "latitude": "64.43427",
         "longditude": "10.41275", 
