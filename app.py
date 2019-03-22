@@ -11,8 +11,8 @@ racks = [
     {
         "id": 1,
         "location": u"Hovedbygget, Glshuagen",
-        "latitude": u"64.41947",
-        "longditude": u"10.40093", 
+        "latitude": u"63.41947",
+        "longitude": u"10.40093", 
         "parkingspots": 20,
         "available_spots": 15
     },
@@ -20,15 +20,15 @@ racks = [
         "id": 2,
         "location": u"Torget",
         "latitude": u"63.43012",
-        "longditude": u"10.39508", 
+        "longitude": u"10.39508", 
         "parkingspots": 30,
         "available_spots": 29
     },
     {
         "id": 3,
         "location": u"Solsiden",
-        "latitude": u"64.43427",
-        "longditude": u"10.41275", 
+        "latitude": u"63.43427",
+        "longitude": u"10.41275", 
         "parkingspots": 10,
         "available_spots": 0
     }
@@ -43,7 +43,7 @@ def addRack(rack_id):
         "id": rack_id,
         "location": request.json.get('location'),
         "latitude": request.json.get('latitude'),
-        "longditude": request.json.get('longditude'),
+        "longitude": request.json.get('longitude'),
         "parkingspots": 10,
         "available_spots": 0
     })
