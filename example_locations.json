@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "location": "Hovedbygget, Gløshuagen",
+        "latitude": "64.41947",
+        "longditude": "10.40093", 
+        "parkingspots": 20,
+        "available_spots": 15
+    },
+    {
+        "id": 2,
+        "location": "Torget",
+        "latitude": "63.43012",
+        "longditude": "10.39508", 
+        "parkingspots": 30,
+        "available_spots": 29
+    },
+    {
+        "id": 2,
+        "location": "Hovedbygget, Gløshuagen",
+        "latitude": "64.41947",
+        "longditude": "10.40093", 
+        "parkingspots": 20,
+        "available_spots": 15
+    },
+    {
+        "id": 3,
+        "location": "Solsiden",
+        "latitude": "64.43427",
+        "longditude": "10.41275", 
+        "parkingspots": 10,
+        "available_spots": 0
+    }
+
+]
