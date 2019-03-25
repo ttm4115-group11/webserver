@@ -1,11 +1,15 @@
 from flask import Flask 
 from flask import jsonify
 from flask import request
+import requests
+import socket
+
 
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 app = Flask(__name__)
+
 
 racks = [
     {
@@ -51,10 +55,27 @@ def addRack(rack_id):
     return 'all good'
 
 
+@app.route('/reserve/<int:rack_id>', methods=['PUT'])
+def reserve(rack_id):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect(('', 5001))
+    s.send(b"reserve rack")
+    print('Sent message')
+
+
 @app.route('/', methods=['GET'])
 def index():
     return jsonify({'racks': racks})
 
 
+
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
+
+
+
+
+
