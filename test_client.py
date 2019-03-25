@@ -1,8 +1,8 @@
 import socket
 
-address = ''
+address = '167.99.217.172'
 port = 5001
-buffer_size = 1024
+buffer_size = 4096
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((address, port))
@@ -10,6 +10,6 @@ s.listen(1)
 
 conn, addr = s.accept()
 
-while 1:
-    data = conn.recv(buffer_size)
-    print(data)
+data = conn.recv(buffer_size)
+print(addr,data)
+    
