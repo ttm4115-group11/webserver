@@ -33,43 +33,33 @@ racks = [
 
 ]
 
+reservations = [
 
+]
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect(('129.241.104.233', 8888))
-        s.send(b"hlep")
-        s.close()
-        s.shutdown(socket.SHUT_RDWR)
         self.write(json.dumps(racks))
+
 
 class ReserveHandler(tornado.web.RequestHandler):
     def put(self):
         body = json.loads(self.request.body)
+        reservations.append(body)
         print(body)
         self.write("All good")
 
-class RackHandler(tornado.websocket.WebSocketHandler):
-    conns = set()
 
-    def open(self):
-        self.conns.add(self)
-        print("New connection")
-        self.write("Connected!")
+# The pies will poll this for new reservations
+class RackHandler(tornado.websocket.RequestHandler):
+    def get(self):
+        self.write(json.dumps(reservations))
 
-    def on_message(self, message):
-        print("Got message: ", message)
-        self.write_message("Received: " + message)
-
-    def on_close(self):
-        self.conns.remove(self)
-        print("Closed!")
 
 def make_app():
     return tornado.web.Application([
         (r"/", MainHandler),
-        (r"/reserve/", ReserveHandler)
-        (r"/ws", ReserveHandler)
+        (r"/reserve/", ReserveHandler),
+        (r"/reservations", RackHandler)
     ])
 
 
