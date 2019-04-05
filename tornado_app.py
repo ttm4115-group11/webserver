@@ -35,10 +35,16 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write(json.dumps(racks))
 
+class ReserveHandler(tornado.web.RequestHandler):
+    def put(self):
+        body = json.loads(self.request.body)
+        print(body)
+        self.write("All good")
 
 def make_app():
     return tornado.web.Application([
         (r"/", MainHandler),
+        (r"/reserve/", ReserveHandler)
     ])
 
 
