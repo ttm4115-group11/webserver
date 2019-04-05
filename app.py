@@ -22,8 +22,8 @@ racks = [
     },
     {
         "id": 2,
-        "location": "Torget",
-        "leatitude": u"63.43012",
+        "location": u"Torget",
+        "latitude": u"63.43012",
         "longitude": u"10.39508", 
         "parkingspots": 30,
         "available_spots": 29
@@ -51,7 +51,7 @@ def addRack(rack_id):
         "id": rack_id,
         "location": request.json.get('location'),
         "latitude": request.json.get('latitude'),
-        "longiitude": request.json.get('longditude'),
+        "longitude": request.json.get('longitude'),
         "parkingspots": 10,
         "available_spots": 0
     })
@@ -78,11 +78,4 @@ def index():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
-
-
-
-
 
