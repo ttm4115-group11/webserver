@@ -3,6 +3,7 @@ import tornado.web
 import json
 import tornado.websocket
 import tornado.httpserver
+import socket
 
 racks = [
     {
@@ -35,6 +36,11 @@ racks = [
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect(('129.241.104.233', 8888))
+        s.send(b"hlep")
+        s.close()
+        s.shutdown(socket.SHUT_RDWR)
         self.write(json.dumps(racks))
 
 class ReserveHandler(tornado.web.RequestHandler):
@@ -53,7 +59,7 @@ class RackHandler(tornado.websocket.WebSocketHandler):
 
     def on_message(self, message):
         print("Got message: ", message)
-        self.write_message("Received: "  + message)
+        self.write_message("Received: " + message)
 
     def on_close(self):
         self.conns.remove(self)
