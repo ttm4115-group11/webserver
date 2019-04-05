@@ -1,6 +1,8 @@
 import tornado.ioloop
 import tornado.web
 import json
+import tornado.websocket
+import tornado.httpserver
 
 racks = [
     {
@@ -41,10 +43,27 @@ class ReserveHandler(tornado.web.RequestHandler):
         print(body)
         self.write("All good")
 
+class RackHandler(tornado.websocket.WebSocketHandler):
+    conns = set()
+
+    def open(self):
+        self.conns.add(self)
+        print("New connection")
+        self.write("Connected!")
+
+    def on_message(self, message):
+        print("Got message: ", message)
+        self.write_message("Received: "  + message)
+
+    def on_close(self):
+        self.conns.remove(self)
+        print("Closed!")
+
 def make_app():
     return tornado.web.Application([
         (r"/", MainHandler),
         (r"/reserve/", ReserveHandler)
+        (r"/ws", ReserveHandler)
     ])
 
 
