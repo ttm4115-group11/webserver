@@ -36,6 +36,8 @@ racks = [
 reservations = [
 
 ]
+
+
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write(json.dumps(racks))
@@ -58,7 +60,7 @@ class RackHandler(tornado.websocket.RequestHandler):
 def make_app():
     return tornado.web.Application([
         (r"/", MainHandler),
-        (r"/reserve/", ReserveHandler),
+        (r"/reserve", ReserveHandler),
         (r"/reservations", RackHandler)
     ])
 
