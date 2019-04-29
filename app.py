@@ -3,6 +3,7 @@ from flask import jsonify
 from flask import request
 import socket
 import json
+from werkzeug.datastructures import ImmutableMultiDict
 
 
 #!/usr/bin/env python
@@ -59,14 +60,15 @@ def addRack(rack_id):
     return 'all good'
 
 
-@app.route('/reserve', methods=['PUT'])
-def reserve():
-    body = request.json
+@app.route('/reserve/<int:id>', methods=['PUT'])
+def reserve(id):
+    body = request.form.to_dict()
+    print(body)
     reservations.append(body)
     return 'Reservation added'
 
 
-@app.route('/reservations', methods=["PUT"])
+@app.route('/reservations', methods=["GET"])
 def reservation():
     return jsonify(reservations)
 
